@@ -58,14 +58,14 @@ services:
 
 ```json
 {
-  "commentTranslate.source": "mtranserver-translate.mtranserver",
+  "commentTranslate.source": "yasser1921.mtranserver-translate-mtranserver",
   "commentTranslate.targetLanguage": "zh-CN",
   "mtranserverTranslate.baseUrl": "http://127.0.0.1:8989",
   "mtranserverTranslate.apiToken": ""
 }
 ```
 
-`commentTranslate.source` 的最终取值以安装后的扩展 ID 为准，格式为 `<publisher>.<name>.<translate-key>`。本仓库默认 publisher 尚未发布到市场，本地调试时以「更改翻译源」命令选中的项为准。
+`commentTranslate.source` 的最终取值以安装后的扩展 ID 为准，格式为 `<publisher>.<name>-<translate-key>`。本仓库默认 publisher 为 `yasser1921`。本地调试时也可以直接用「更改翻译源」命令选择 **MTranServer**。
 
 ## 扩展设置
 
@@ -131,6 +131,7 @@ Comment Translate 沿用 VS Code / Google 风格代码（`zh-CN`、`zh-TW`、`en
 ```bash
 npm install
 npm run compile
+npm test
 ```
 
 按 `F5` 打开扩展开发宿主窗口。宿主中需已安装 Comment Translate，然后执行 **Change translation source**，选择 **MTranServer**，对着一段英文注释悬停验证。
