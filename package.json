@@ -1,0 +1,124 @@
+{
+  "name": "mtranserver-translate",
+  "displayName": "MTranServer Translate",
+  "description": "MTranServer translation source for Comment Translate",
+  "version": "0.0.1",
+  "publisher": "yasser1921",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "translateSource",
+    "comment translate",
+    "mtranserver",
+    "MTranServer",
+    "translation",
+    "offline translate",
+    "comments",
+    "翻译",
+    "注释",
+    "翻訳"
+  ],
+  "homepage": "https://github.com/yasser1921/vscode-mtranserver-translate#readme",
+  "bugs": {
+    "url": "https://github.com/yasser1921/vscode-mtranserver-translate/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yasser1921/vscode-mtranserver-translate.git"
+  },
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "extensionDependencies": [
+    "intellsmi.comment-translate"
+  ],
+  "contributes": {
+    "configuration": [
+      {
+        "title": "MTranServer Translate",
+        "properties": {
+          "mtranserverTranslate.baseUrl": {
+            "type": "string",
+            "default": "http://127.0.0.1:8989",
+            "markdownDescription": "MTranServer 根地址，不要带 `/translate` 路径。例如 `http://127.0.0.1:8989`、局域网 IP 或反向代理 HTTPS 地址。"
+          },
+          "mtranserverTranslate.apiToken": {
+            "type": "string",
+            "default": "",
+            "markdownDescription": "对应服务端环境变量 `MT_API_TOKEN`。为空则不发送认证头。"
+          },
+          "mtranserverTranslate.timeout": {
+            "type": "number",
+            "default": 120000,
+            "minimum": 1,
+            "markdownDescription": "请求超时，单位毫秒。首次翻译会下载并加载模型，建议不要设得过小。"
+          },
+          "mtranserverTranslate.html": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "是否把文本按 HTML 交给引擎（对应 API 的 `html` 字段）。注释翻译一般保持 `false`。"
+          },
+          "mtranserverTranslate.maxLen": {
+            "type": "number",
+            "default": 5000,
+            "minimum": 1,
+            "markdownDescription": "单次请求最大字符数，供 Comment Translate 在超长文本时拆分。"
+          },
+          "mtranserverTranslate.defaultFrom": {
+            "type": "string",
+            "default": "auto",
+            "markdownDescription": "Comment Translate 未给出源语言时的默认值。`auto` 由 MTranServer 自动检测。"
+          }
+        }
+      }
+    ],
+    "translates": [
+      {
+        "translate": "mtranserver",
+        "title": "MTranServer"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "pretest": "npm run compile",
+    "test": "c8 --check-coverage --lines 80 --functions 80 --branches 80 --statements 80 mocha --ui bdd --timeout 10000 --require ./out/test/setup.js \"./out/test/**/*.test.js\"",
+    "coverage": "c8 report --reporter=text --reporter=html",
+    "package": "npm run compile && vsce package --no-git-tag-version"
+  },
+  "dependencies": {
+    "comment-translate-manager": "^0.0.5"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.13.10",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "@vscode/vsce": "^3.9.2",
+    "c8": "^10.1.3",
+    "eslint": "^8.57.1",
+    "mocha": "^11.1.0",
+    "typescript": "^5.8.2"
+  },
+  "c8": {
+    "all": true,
+    "src": [
+      "src"
+    ],
+    "exclude": [
+      "**/test/**"
+    ],
+    "reporter": [
+      "text",
+      "text-summary"
+    ]
+  }
+}
