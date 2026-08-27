@@ -48,6 +48,13 @@ services:
 
 ## 安装与使用
 
+从 [GitHub Releases](https://github.com/yasser1921/vscode-mtranserver-translate/releases) 下载 `mtranserver-translate-*.vsix`，在 VS Code / Cursor 扩展视图选择 **Install from VSIX...**。本地打包：
+
+```bash
+npm install
+npm run package
+```
+
 1. 安装本扩展（从 VSIX 安装，或在本仓库中按 [开发](#开发) 调试运行）。
 2. 命令面板执行 Comment Translate 的 **Change translation source**（更改翻译源）。
 3. 选择 **MTranServer**。
@@ -132,6 +139,7 @@ Comment Translate 沿用 VS Code / Google 风格代码（`zh-CN`、`zh-TW`、`en
 npm install
 npm run compile
 npm test
+npm run package
 ```
 
 按 `F5` 打开扩展开发宿主窗口。宿主中需已安装 Comment Translate，然后执行 **Change translation source**，选择 **MTranServer**，对着一段英文注释悬停验证。

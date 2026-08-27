@@ -12,4 +12,5 @@ out/test/**
 coverage/**
 .nyc_output/**
 **/*.test.js
+node_modules/@types/**
 vsc-extension-quickstart.md
